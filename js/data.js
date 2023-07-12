@@ -1,17 +1,21 @@
-import {randomInteger} from './util.js';
+import { randomInteger } from './util.js';
 
 const PHOTO_COUNT = 25;
-const Likes = {
+const LIKES = {
   MIN: 15,
   MAX: 200
 };
-const Comments = {
+const COMMENTS = {
   MIN: 0,
   MAX: 30
 };
-const Avatar = {
+const AVATAR = {
   MIN: 1,
   MAX: 6
+};
+const AVATAR_SIZE = {
+  WIDTH: 35,
+  HEIGHT: 35
 };
 const userName = [
   'Мария',
@@ -41,11 +45,11 @@ const photos = [];
 
 const generateComments = () => {
   const comments = [];
-  const numberOfComments = randomInteger(Comments.MIN, Comments.MAX);
+  const numberOfComments = randomInteger(COMMENTS.MIN, COMMENTS.MAX);
   for (let i = 1; i <= numberOfComments; i++) {
     comments.push({
       id: i,
-      avatar: `img/avatar-${randomInteger(Avatar.MIN, Avatar.MAX)}.svg`,
+      avatar: `img/avatar-${randomInteger(AVATAR.MIN, AVATAR.MAX)}.svg`,
       message: listComments[randomInteger(0, listComments.length - 1)],
       name: userName[randomInteger(0, userName.length - 1)]
     });
@@ -57,7 +61,7 @@ const addPhoto = (id) => ({
   id,
   url: `photos/${id}.jpg`,
   description: description[randomInteger(0, description.length - 1)],
-  likes: randomInteger(Likes.MIN, Likes.MAX),
+  likes: randomInteger(LIKES.MIN, LIKES.MAX),
   comments: generateComments()
 });
 
@@ -69,4 +73,6 @@ const addPhotos = () => {
 
 addPhotos();
 
-export {generateComments, photos};
+export { generateComments, photos, AVATAR_SIZE };
+
+
