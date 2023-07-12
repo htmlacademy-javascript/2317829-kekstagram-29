@@ -1,8 +1,8 @@
-import { showBigPhoto } from './full-size-photos.js';
+import { showBigPhoto } from './full-size-pictures.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const templateFragment = document.querySelector('#picture').content;
-const template = templateFragment.querySelector('a');
+const template = templateFragment.querySelector('.picture');
 
 const renderPhoto = ({ url, comments, likes, description }) => {
   const photoElement = template.cloneNode(true);
