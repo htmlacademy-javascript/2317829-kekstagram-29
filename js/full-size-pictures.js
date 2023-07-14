@@ -1,4 +1,5 @@
-import { AVATAR_SIZE } from './data.js';
+import { isEscape } from './util.js';
+import { AVATAR_SIZE, COMMENTS_PER_CLICK } from './data.js';
 
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImage = bigPhoto.querySelector('.big-picture__img img');
@@ -17,7 +18,6 @@ let onBigPhotoCloseButtonClick;
 const showBigPhoto = (photo) => {
   const { url, likes, comments, description } = photo;
   let visibleComments = 0;
-  const COMMENTS_PER_CLICK = 5;
 
   bigPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -76,7 +76,7 @@ const showBigPhoto = (photo) => {
   };
 
   onBigPhotoEscKeyDown = (evt) => {
-    if (evt.key === 'Escape') {
+    if (isEscape(evt)) {
       closeBigPhoto();
     }
   };
@@ -91,3 +91,5 @@ const showBigPhoto = (photo) => {
 };
 
 export { showBigPhoto };
+
+

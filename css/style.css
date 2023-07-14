@@ -1408,3 +1408,18 @@ main {
 .hidden {
   display: none;
 }
+
+
+/* Сообщения об ошибках
+   ========================================================================== */
+
+.img-upload__field-wrapper__error {
+  position: relative;
+  margin-top: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 440px;
+  border-radius: 10px;
+  background-color: #fa4b49;
+  color: #ffffff;
+}
