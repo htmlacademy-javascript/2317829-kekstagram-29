@@ -17,6 +17,11 @@ const AVATAR_SIZE = {
   WIDTH: 35,
   HEIGHT: 35
 };
+const COMMENTS_PER_CLICK = 5;
+const HASHTAG_ERROR = 'Несоблюдение правил заполнения хеш-тегов';
+const HASHTAG_VALID = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_HASHTAG_COUNT = 5;
+
 const userName = [
   'Мария',
   'Алексей',
@@ -73,6 +78,6 @@ const addPhotos = () => {
 
 addPhotos();
 
-export { generateComments, photos, AVATAR_SIZE };
+export { generateComments, photos, AVATAR_SIZE, COMMENTS_PER_CLICK, HASHTAG_ERROR, HASHTAG_VALID, MAX_HASHTAG_COUNT };
 
 
