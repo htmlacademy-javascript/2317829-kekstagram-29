@@ -1,5 +1,7 @@
 import { isEscape } from './util.js';
 import { HASHTAG_ERROR, HASHTAG_VALID, MAX_HASHTAG_COUNT } from './data.js';
+import { resetScale } from './zoom-scale.js';
+import { changeEffects } from './effects-slider.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOpen = document.querySelector('.img-upload__overlay');
@@ -15,8 +17,10 @@ const pristine = new Pristine(uploadForm, {
 });
 
 const closeUploadForm = () => {
+  resetScale();
   uploadForm.reset();
   pristine.reset();
+  changeEffects();
   uploadOpen.classList.add('hidden');
   document.body.classList.remove('modal-open');
 };
@@ -70,3 +74,16 @@ pristine.addValidator(
   validateTags,
   HASHTAG_ERROR
 );
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+  const isValid = pristine.validate();
+  if (isValid) {
+    // eslint-disable-next-line no-console
+    console.log('Можно отправлять');
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('Нельзя отправлять');
+  }
+};
+
+uploadForm.addEventListener('submit', onFormSubmit);
