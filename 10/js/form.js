@@ -74,16 +74,9 @@ pristine.addValidator(
   validateTags,
   HASHTAG_ERROR
 );
+
 const onFormSubmit = (evt) => {
   evt.preventDefault();
-  const isValid = pristine.validate();
-  if (isValid) {
-    // eslint-disable-next-line no-console
-    console.log('Можно отправлять');
-  } else {
-    // eslint-disable-next-line no-console
-    console.log('Нельзя отправлять');
-  }
 };
 
 uploadForm.addEventListener('submit', onFormSubmit);
