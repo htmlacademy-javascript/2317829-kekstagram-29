@@ -1,7 +1,10 @@
 import { isEscape } from './util.js';
-import { HASHTAG_ERROR, HASHTAG_VALID, MAX_HASHTAG_COUNT } from './data.js';
 import { resetScale } from './zoom-scale.js';
 import { changeEffects } from './effects-slider.js';
+
+const HASHTAG_ERROR = 'Несоблюдение правил заполнения хеш-тегов';
+const HASHTAG_VALID = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_HASHTAG_COUNT = 5;
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOpen = document.querySelector('.img-upload__overlay');
@@ -9,6 +12,7 @@ const uploadClose = document.querySelector('.img-upload__cancel');
 const uploadFile = document.querySelector('.img-upload__input');
 const textDescription = document.querySelector('.text__description');
 const textHashtags = document.querySelector('.text__hashtags');
+const imgUploadSubmit = document.querySelector('.img-upload__submit');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -75,8 +79,19 @@ pristine.addValidator(
   HASHTAG_ERROR
 );
 
+const updateSubmitButton = () => {
+  const hashtagsValid = pristine.validate(textHashtags);
+  const descriptionValid = pristine.validate(textDescription);
+  imgUploadSubmit.disabled = !(hashtagsValid && descriptionValid);
+};
+
+textDescription.addEventListener('input', updateSubmitButton);
+textHashtags.addEventListener('input', updateSubmitButton);
+
 const onFormSubmit = (evt) => {
   evt.preventDefault();
 };
 
 uploadForm.addEventListener('submit', onFormSubmit);
+
+export { closeUploadForm };

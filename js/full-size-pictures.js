@@ -1,5 +1,10 @@
 import { isEscape } from './util.js';
-import { AVATAR_SIZE, COMMENTS_PER_CLICK } from './data.js';
+
+const COMMENTS_PER_CLICK = 5;
+const AvatarSize = {
+  WIDTH: 35,
+  HEIGHT: 35
+};
 
 const bigPhoto = document.querySelector('.big-picture');
 const bigPhotoImage = bigPhoto.querySelector('.big-picture__img img');
@@ -43,8 +48,8 @@ const showBigPhoto = (photo) => {
       commentAvatar.classList.add('social__picture');
       commentAvatar.src = comment.avatar;
       commentAvatar.alt = comment.name;
-      commentAvatar.width = AVATAR_SIZE.WIDTH;
-      commentAvatar.height = AVATAR_SIZE.HEIGHT;
+      commentAvatar.width = AvatarSize.WIDTH;
+      commentAvatar.height = AvatarSize.HEIGHT;
 
       const commentText = document.createElement('p');
       commentText.classList.add('social__text');
