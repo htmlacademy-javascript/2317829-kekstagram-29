@@ -3,6 +3,7 @@ import './form.js';
 import { loadData } from './fetch.js';
 import './messages.js';
 import { initializeFilters } from './filters.js';
+import './own-pictures.js';
 
 let photos = [];
 
