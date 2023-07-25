@@ -2,12 +2,14 @@ import { renderPhotos } from './thumbnail.js';
 import './form.js';
 import { loadData } from './fetch.js';
 import './messages.js';
+import { initializeFilters } from './filters.js';
 
 let photos = [];
 
 const onSuccess = (data) => {
   photos = data.slice();
   renderPhotos(photos);
+  initializeFilters(photos);
 };
 
 const onError = () => {
@@ -25,6 +27,3 @@ const onError = () => {
 };
 
 loadData (onSuccess, onError);
-
-renderPhotos(photos);
-
