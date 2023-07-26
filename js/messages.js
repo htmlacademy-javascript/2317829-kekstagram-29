@@ -38,6 +38,16 @@ const showErrorMessage = () => {
     document.querySelector('.img-upload__overlay').classList.remove('hidden');
     closeModal();
   });
+
+  document.addEventListener('keydown', (evt) => {
+    if (isEscape(evt)) {
+      messageFragment.remove();
+
+      document.querySelector('.img-upload__overlay').classList.remove('hidden');
+
+      document.removeEventListener('keydown', onEscKeydown);
+    }
+  });
 };
 
 const showSuccessMessage = () => {
@@ -63,7 +73,17 @@ const onError = () => {
 
 const openUploadSubmit = (evt) => {
   evt.preventDefault();
-  uploadData(onSuccess, onError, 'POST', new FormData(evt.target));
+
+  const submitButton = document.querySelector('.img-upload__submit');
+  submitButton.setAttribute('disabled', 'disabled');
+
+  uploadData(() => {
+    onSuccess();
+    submitButton.removeAttribute('disabled');
+  }, () => {
+    onError();
+    submitButton.removeAttribute('disabled');
+  }, 'POST', new FormData(evt.target));
 };
 
 formUpload.addEventListener('submit', openUploadSubmit);
