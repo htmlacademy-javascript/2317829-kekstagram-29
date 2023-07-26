@@ -4,7 +4,7 @@ const MAX_SCALE = 100;
 const DEFAULT_SCALE = 100;
 
 const uploadScale = document.querySelector('.img-upload__scale');
-const uploadPreview = document.querySelector('.img-upload__preview');
+const uploadPreview = document.querySelector('.img-upload__preview img');
 const scaleControlSmaller = uploadScale.querySelector('.scale__control--smaller');
 const scaleControlBigger = uploadScale.querySelector('.scale__control--bigger');
 const scaleControlValue = uploadScale.querySelector('.scale__control--value');
