@@ -12,15 +12,10 @@ uploadFile.addEventListener('change', () => {
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
   if (matches) {
-    const reader = new FileReader();
-
-    reader.addEventListener('load', () => {
-      ownImageUploadPreview.src = reader.result;
-      smallImages.forEach((evt) => {
-        evt.style.backgroundImage = `url(${reader.result})`;
-      });
+    const url = URL.createObjectURL(file);
+    ownImageUploadPreview.src = url;
+    smallImages.forEach((img) => {
+      img.style.backgroundImage = `url(${url})`;
     });
-
-    reader.readAsDataURL(file);
   }
 });
